@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Nome: " + cursor.getString(1));
                 System.out.println("CPF " + cursor.getString(2));
                 cursor.moveToNext();
+                ////////////test
             }
         }
 
