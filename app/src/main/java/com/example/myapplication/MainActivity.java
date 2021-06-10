@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -37,5 +38,20 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Registro Salvo",Toast.LENGTH_LONG).show();
         else
             Toast.makeText(this,"Falha ao Salvar",Toast.LENGTH_LONG).show();
+        //Listar Registros após insert
+        db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id, nome, cpf FROM cliente",null);
+        if(cursor != null) {
+            cursor.moveToFirst();
+            for (int i = 0; i< cursor.getCount();i++){
+                System.out.println("ID: " + cursor.getInt(0));
+                System.out.println("Nome: " + cursor.getString(1));
+                System.out.println("CPF " + cursor.getString(2));
+                cursor.moveToNext();
+            }
+        }
+
+
     }
+
 }
